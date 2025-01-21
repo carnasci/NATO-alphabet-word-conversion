@@ -32,5 +32,6 @@ print(nato_alphabet_dict)
 #TODO 2. Create a list of the phonetic code words from a word that the user inputs.
 user_word = input("What word would you like to convert to NATO alphabet?: ").upper()
 
-converted_list = [code for (letter, code) in nato_alphabet_dict.items() if letter in user_word]
+#converted_list = [code for (letter, code) in nato_alphabet_dict.items() if letter in user_word]
+converted_list = [nato_alphabet_dict[letter] for letter in user_word]
 print(converted_list)
