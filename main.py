@@ -24,14 +24,29 @@ for (index, row) in student_data_frame.iterrows():
 {"A": "Alfa", "B": "Bravo"}
 nato_alphabet_data = pandas.read_csv("nato_phonetic_alphabet.csv")
 nato_alphabet_df = pandas.DataFrame(nato_alphabet_data)
-#print(nato_alphabet_df)
 
+#Create NATO dictionary out of Dataframe.
 nato_alphabet_dict = {row.letter:row.code for (index, row) in nato_alphabet_df.iterrows()}
 print(nato_alphabet_dict)
 
 #TODO 2. Create a list of the phonetic code words from a word that the user inputs.
-user_word = input("What word would you like to convert to NATO alphabet?: ").upper()
+
+# user_word = input("What word would you like to convert to NATO alphabet?: ").upper()
 
 #converted_list = [code for (letter, code) in nato_alphabet_dict.items() if letter in user_word]
-converted_list = [nato_alphabet_dict[letter] for letter in user_word]
-print(converted_list)
+
+# converted_list = [nato_alphabet_dict[letter] for letter in user_word]
+# print(converted_list)
+
+#Using try/catch error handling
+def generate_phonetic():
+    user_word = input("What word would you like to convert to NATO alphabet?: ").upper()
+    try:
+        converted_list = [nato_alphabet_dict[letter] for letter in user_word]
+    except KeyError:
+        print("Sorry, only letters in the dictionary please.")
+        generate_phonetic()
+    else:
+        print(converted_list)
+
+generate_phonetic()
